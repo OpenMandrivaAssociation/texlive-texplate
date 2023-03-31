@@ -1,6 +1,6 @@
 Name:		texlive-texplate
 Version:	61719
-Release:	1
+Release:	2
 Summary:	A tool for creating document structures based on templates
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/texplate

@@ -3,7 +3,7 @@ Version:	61719
 Release:	2
 Summary:	A tool for creating document structures based on templates
 Group:		Publishing
-URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/texplate
+URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/texplate
 License:	bsd3
 Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/texplate.r%{version}.tar.xz
 Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/texplate.doc.r%{version}.tar.xz

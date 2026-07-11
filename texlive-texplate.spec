@@ -1,48 +1,28 @@
-Name:		texlive-texplate
-Version:	61719
-Release:	2
+%global tl_name texplate
+%global tl_revision 71963
+
+Name:		texlive-%{tl_name}
+Epoch:		1
+Version:	1.0.6
+Release:	%{tl_revision}.1
 Summary:	A tool for creating document structures based on templates
 Group:		Publishing
-URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/texplate
+URL:		https://www.ctan.org/tex-archive/support/texplate
 License:	bsd3
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/texplate.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/texplate.doc.r%{version}.tar.xz
-Source2:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/texplate.source.r%{version}.tar.xz
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/texplate.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/texplate.doc.r%{tl_revision}.tar.xz
+Source2:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/texplate.source.r%{tl_revision}.tar.xz
 BuildArch:	noarch
-BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
+BuildSystem:	texlive
+Requires:	texlive(texplate.bin)
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-TeXplate is a tool for creating document structures based on
-templates. The application name is a word play on TeX and
-template, so the purpose seems quite obvious: we want to
-provide an easy and straightforward framework for reducing the
-typical code boilerplate when writing TeX documents. Also note
-that one can easily extrapolate the use beyond articles and
-theses: the application is powerful enough to generate any
-text-based structure, given that a corresponding template
-exists.
+TeXplate is a tool for creating document structures based on templates.
+The application name is a word play on TeX and template, so the purpose
+seems quite obvious: we want to provide an easy and straightforward
+framework for reducing the typical code boilerplate when writing TeX
+documents. Also note that one can easily extrapolate the use beyond
+articles and theses: the application is powerful enough to generate any
+text-based structure, given that a corresponding template exists.
 
-%prep
-%setup -c -a1 -a2
-%autopatch -p1
-
-%build
-
-%install
-rm -rf tlpkg
-mkdir -p %{buildroot}%{_datadir}
-cp -a texmf-dist %{buildroot}%{_datadir}
-
-%files
-%doc %{_texmfdistdir}/texmf-dist/source/support/texplate
-%doc %{_texmfdistdir}/texmf-dist/source/support/texplate/main/resources/org/islandoftex/texplate
-%doc %{_texmfdistdir}/texmf-dist/source/support/texplate/main/kotlin/org/islandoftex/texplate
-%{_texmfdistdir}/texmf-dist/scripts/texplate
-%doc %{_texmfdistdir}/texmf-dist/doc/support/texplate
-
-%post -p %{_sbindir}/texlive.post
-
-%postun
-[ "$1" -eq 0 ] && %{_sbindir}/texlive.post
